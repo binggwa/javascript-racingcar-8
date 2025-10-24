@@ -41,7 +41,7 @@ class Race {
                 MissionUtils.Console.print(`${name} : ${'-'.repeat(position)}`);
             }
 
-            MissionUtils.Console.print('\n');
+            MissionUtils.Console.print('');
         }
     }
 
