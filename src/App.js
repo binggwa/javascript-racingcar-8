@@ -13,6 +13,22 @@ class App {
         throw new Error('[ERROR] 참가할 자동차가 없습니다!');
       }
 
+      const nameOfCars = trimmedNames.split(',');
+      const names = [];
+      for (let i = 0; i < nameOfCars.length; i++) {
+        const name = nameOfCars[i].trim();
+
+        if (name.length === 0) {
+          throw new Error('[ERROR] 이름이 없는 자동차가 있습니다!');
+        }
+
+        if (name.length > 5) {
+          throw new Error('[ERROR] 자동차의 이름은 5자 이하여야 합니다!');
+        }
+
+        names.push(name);
+      }
+
       const cycleCount = await MissionUtils.Console.readLineAsync(
         '시도할 횟수는 몇 회인가요?\n',
       );
