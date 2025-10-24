@@ -33,6 +33,11 @@ class App {
         '시도할 횟수는 몇 회인가요?\n',
       );
 
+      const trimmedCount = cycleCount.trim();
+      if (trimmedCount.length === 0) {
+        throw new Error('[ERROR] 시도할 횟수를 입력해주세요!');
+      }
+
       MissionUtils.Console.print('\n실행 결과');
 
       const race = Race.start(names);
