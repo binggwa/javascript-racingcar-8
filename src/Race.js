@@ -38,7 +38,7 @@ class Race {
             const nowPosition = this.getNowPosition();
             for (let i = 0; i < nowPosition.length; i++) {
                 const { name, position } = nowPosition[i];
-                MissionUtils.Console.print('${name} : ${'-'.repeat(position)}');
+                MissionUtils.Console.print(`${name} : ${'-'.repeat(position)}`);
             }
 
             MissionUtils.Console.print('\n');
@@ -48,7 +48,7 @@ class Race {
     printWinners() {
         let fastest = 0;
         for (let i = 0; i < this.cars.length; i++) {
-            const position = this.cars[i].getPosition;
+            const position = this.cars[i].getPosition();
             if (position > fastest) {
                 fastest = position;
             }
@@ -61,7 +61,7 @@ class Race {
             }
         }
         
-        MissionUtils.Console.print('최종 우승자 : ${winners.join(', ')}');
+        MissionUtils.Console.print(`최종 우승자 : ${winners.join(', ')}`);
     }
 }
 
