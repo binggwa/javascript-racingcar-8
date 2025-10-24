@@ -56,7 +56,7 @@ class App {
       const race = Race.start(names);
 
       // 중간 결과 출력
-      race.printEachCycle(cycleCount);
+      race.printEachCycle(num);
 
       // 최종 우승자 출력
       race.printWinners();
