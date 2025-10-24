@@ -38,6 +38,19 @@ class App {
         throw new Error('[ERROR] 시도할 횟수를 입력해주세요!');
       }
 
+      const num = Number(trimmedCount);
+      if (Number.isNaN(num)) {
+        throw new Error('[ERROR] 시도할 횟수가 숫자가 아닙니다!');
+      }
+      
+      if (!Number.isInteger(num)) {
+        throw new Error('[ERROR] 시도할 횟수는 정수여야 합니다!');
+      }
+
+      if (num < 1) {
+        throw new Error('[ERROR] 시도할 횟수는 1 이상의 자연수여야 합니다!');
+      }
+
       MissionUtils.Console.print('\n실행 결과');
 
       const race = Race.start(names);
