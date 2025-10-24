@@ -18,6 +18,17 @@ class Race {
             this.cars[i].tryMove();
         }
     }
+    
+    getNowPosition() {
+        const nowPosition = [];
+        for (let i = 0; i < this.cars.length; i++) {
+            nowPosition.push({
+                name: this.cars[i].getName(),
+                position: this.cars[i].getPosition(),
+            });
+        }
+        return nowPosition;
+    }
 }
 
 export default Race;
