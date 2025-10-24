@@ -1,3 +1,4 @@
+import { MissionUtils } from '@woowacourse/mission-utils';
 import Car from './Car.js';
 
 class Race {
@@ -28,6 +29,20 @@ class Race {
             });
         }
         return nowPosition;
+    }
+
+    printEachCycle(times) {
+        for (let t = 0; t < times; t++) {
+            this.goOneCycle();
+
+            const nowPosition = this.getNowPosition();
+            for (let i = 0; i < nowPosition.length; i++) {
+                const { name, position } = nowPosition[i];
+                MissionUtils.Console.print('${name} : ${'-'.repeat(position)}');
+            }
+
+            MissionUtils.Console.print('\n');
+        }
     }
 }
 
