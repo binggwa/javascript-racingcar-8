@@ -12,6 +12,12 @@ class Race {
     constructor(cars) {
         this.cars = cars;
     }
+
+    goOneCycle() {
+        for (let i = 0; i < this.cars.length; i++) {
+            this.cars[i].tryMove();
+        }
+    }
 }
 
 export default Race;
