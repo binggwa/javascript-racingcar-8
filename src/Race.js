@@ -44,6 +44,25 @@ class Race {
             MissionUtils.Console.print('\n');
         }
     }
+
+    printWinners() {
+        let fastest = 0;
+        for (let i = 0; i < this.cars.length; i++) {
+            const position = this.cars[i].getPosition;
+            if (position > fastest) {
+                fastest = position;
+            }
+        }
+
+        const winners = [];
+        for (let i = 0; i < this.cars.length; i++) {
+            if (this.cars[i].getPosition() === fastest) {
+                winners.push(this.cars[i].getName());
+            }
+        }
+        
+        MissionUtils.Console.print('최종 우승자 : ${winners.join(', ')}');
+    }
 }
 
 export default Race;
