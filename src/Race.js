@@ -27,23 +27,22 @@ class Race {
         }
     }
 
-    printWinners() {
-        let fastest = 0;
-        for (let i = 0; i < this.cars.length; i++) {
-            const position = this.cars[i].getPosition();
-            if (position > fastest) {
-                fastest = position;
-            }
-        }
+    getFarthestPosition() {
+        return this.cars.reduce((max, car) => Math.max(max, car.getPosition()), 0);
+    }
 
-        const winners = [];
-        for (let i = 0; i < this.cars.length; i++) {
-            if (this.cars[i].getPosition() === fastest) {
-                winners.push(this.cars[i].getName());
-            }
-        }
-        
-        MissionUtils.Console.print(`최종 우승자 : ${winners.join(', ')}`);
+    getWinners() {
+        const farthestPosition = this.getFarthestPosition();
+        const winners = this.cars.filter(
+            (car) => car.getPostiion() === farthestPosition
+        );
+
+        return winners;
+    }
+
+    printResult() {
+        const winnerNames = this.getWinners().map((car) => car.getName());
+        MissionUtils.Console.print(`최종 우승자 : ${winnerNames.join(', ')}`);
     }
 }
 

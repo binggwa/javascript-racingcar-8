@@ -59,7 +59,7 @@ class App {
       race.startRace();
 
       // 최종 우승자 출력
-      race.printWinners();
+      race.printResult();
     } catch (error) {
       MissionUtils.Console.print(error.message);
       throw error;
