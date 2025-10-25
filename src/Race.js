@@ -1,49 +1,49 @@
-import { MissionUtils } from '@woowacourse/mission-utils';
-import Car from './Car.js';
+import { MissionUtils } from "@woowacourse/mission-utils";
+import Car from "./Car.js";
 
 class Race {
-    constructor(carNames, lapCount) {
-        this.cars = carNames.map((name) => new Car(name));
-        this.lapCount = lapCount;
-    }
+  constructor(carNames, lapCount) {
+    this.cars = carNames.map((name) => new Car(name));
+    this.lapCount = lapCount;
+  }
 
-    processLap() {
-        this.cars.forEach((car) => car.tryMove());
-    }
-    
-    printCurrentPositions() {
-        this.cars.forEach((car) => {
-            const name = car.getName();
-            const position = car.getPosition();
-            MissionUtils.Console.print(`${name} : ${'-'.repeat(position)}`);
-        });
-        MissionUtils.Console.print('');
-    }
+  processLap() {
+    this.cars.forEach((car) => car.tryMove());
+  }
 
-    startRace() {
-        for (let lap = 0; lap < this.lapCount; lap++) {
-            this.processLap();
-            this.printCurrentPositions();
-        }
-    }
+  printCurrentPositions() {
+    this.cars.forEach((car) => {
+      const name = car.getName();
+      const position = car.getPosition();
+      MissionUtils.Console.print(`${name} : ${"-".repeat(position)}`);
+    });
+    MissionUtils.Console.print("");
+  }
 
-    getFarthestPosition() {
-        return this.cars.reduce((max, car) => Math.max(max, car.getPosition()), 0);
+  startRace() {
+    for (let lap = 0; lap < this.lapCount; lap++) {
+      this.processLap();
+      this.printCurrentPositions();
     }
+  }
 
-    getWinners() {
-        const farthestPosition = this.getFarthestPosition();
-        const winners = this.cars.filter(
-            (car) => car.getPostiion() === farthestPosition
-        );
+  getFarthestPosition() {
+    return this.cars.reduce((max, car) => Math.max(max, car.getPosition()), 0);
+  }
 
-        return winners;
-    }
+  getWinners() {
+    const farthestPosition = this.getFarthestPosition();
+    const winners = this.cars.filter(
+      (car) => car.getPostiion() === farthestPosition
+    );
 
-    printResult() {
-        const winnerNames = this.getWinners().map((car) => car.getName());
-        MissionUtils.Console.print(`최종 우승자 : ${winnerNames.join(', ')}`);
-    }
+    return winners;
+  }
+
+  printResult() {
+    const winnerNames = this.getWinners().map((car) => car.getName());
+    MissionUtils.Console.print(`최종 우승자 : ${winnerNames.join(", ")}`);
+  }
 }
 
 export default Race;
