@@ -14,10 +14,8 @@ class Race {
         this.cars = cars;
     }
 
-    goOneCycle() {
-        for (let i = 0; i < this.cars.length; i++) {
-            this.cars[i].tryMove();
-        }
+    processLap() {
+        this.cars.forEach((car) => car.tryMove());
     }
     
     getNowPosition() {
