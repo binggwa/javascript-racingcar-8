@@ -1,5 +1,5 @@
-import { MissionUtils } from "@woowacourse/mission-utils";
-import Car from "./Car.js";
+import { MissionUtils } from '@woowacourse/mission-utils';
+import Car from './Car.js';
 
 class Race {
   constructor(carNames, lapCount) {
@@ -15,12 +15,13 @@ class Race {
     this.cars.forEach((car) => {
       const name = car.getName();
       const position = car.getPosition();
-      MissionUtils.Console.print(`${name} : ${"-".repeat(position)}`);
+      MissionUtils.Console.print(`${name} : ${'-'.repeat(position)}`);
     });
-    MissionUtils.Console.print("");
+    MissionUtils.Console.print('');
   }
 
   startRace() {
+    MissionUtils.Console.print('\n실행 결과');
     for (let lap = 0; lap < this.lapCount; lap++) {
       this.processLap();
       this.printCurrentPositions();
@@ -34,7 +35,7 @@ class Race {
   getWinners() {
     const farthestPosition = this.getFarthestPosition();
     const winners = this.cars.filter(
-      (car) => car.getPostiion() === farthestPosition
+      (car) => car.getPosition() === farthestPosition
     );
 
     return winners;
@@ -42,7 +43,7 @@ class Race {
 
   printResult() {
     const winnerNames = this.getWinners().map((car) => car.getName());
-    MissionUtils.Console.print(`최종 우승자 : ${winnerNames.join(", ")}`);
+    MissionUtils.Console.print(`최종 우승자 : ${winnerNames.join(', ')}`);
   }
 }
 
