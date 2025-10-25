@@ -2,44 +2,28 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 import Car from './Car.js';
 
 class Race {
-    static start(names) {
-        const cars = [];
-        for (let i = 0; i < names.length; i++) {
-            cars.push(new Car(names[i]));
-        }
-        return new Race(cars);
-    }
-
-    constructor(cars) {
-        this.cars = cars;
+    constructor(carNames, lapCount) {
+        this.cars = carNames.map((name) => new Car(name));
+        this.lapCount = lapCount;
     }
 
     processLap() {
         this.cars.forEach((car) => car.tryMove());
     }
     
-    getNowPosition() {
-        const nowPosition = [];
-        for (let i = 0; i < this.cars.length; i++) {
-            nowPosition.push({
-                name: this.cars[i].getName(),
-                position: this.cars[i].getPosition(),
-            });
-        }
-        return nowPosition;
+    printCurrentPositions() {
+        this.cars.forEach((car) => {
+            const name = car.getName();
+            const position = car.getPosition();
+            MissionUtils.Console.print(`${name} : ${'-'.repeat(position)}`);
+        });
+        MissionUtils.Console.print('');
     }
 
-    printEachCycle(times) {
-        for (let t = 0; t < times; t++) {
-            this.goOneCycle();
-
-            const nowPosition = this.getNowPosition();
-            for (let i = 0; i < nowPosition.length; i++) {
-                const { name, position } = nowPosition[i];
-                MissionUtils.Console.print(`${name} : ${'-'.repeat(position)}`);
-            }
-
-            MissionUtils.Console.print('');
+    startRace() {
+        for (let lap = 0; lap < this.lapCount; lap++) {
+            this.processLap();
+            this.printCurrentPositions();
         }
     }
 

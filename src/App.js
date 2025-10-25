@@ -53,10 +53,10 @@ class App {
 
       MissionUtils.Console.print('\n실행 결과');
 
-      const race = Race.start(names);
+      const race = new Race(names, num);
 
       // 중간 결과 출력
-      race.printEachCycle(num);
+      race.startRace();
 
       // 최종 우승자 출력
       race.printWinners();
