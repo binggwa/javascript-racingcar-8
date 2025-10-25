@@ -85,6 +85,34 @@ describe('자동차 경주', () => {
         name: '자동차 이름이 5자를 초과할 경우', 
         inputs: ['pobi,javaji'] 
       },
+      { 
+        name: '빈 자동차 이름이 있을 경우', 
+        inputs: ['a,b,'] 
+      },
+      { 
+        name: '빈 자동차 이름만 있을 경우', 
+        inputs: ['    '] 
+      },
+      { 
+        name: '시도 횟수가 비어있을 경우', 
+        inputs: ['a,b', '     '] 
+      },
+      { 
+        name: '시도 횟수가 숫자가 아닐 경우', 
+        inputs: ['a,b', 'abcdefg'] 
+      },
+      { 
+        name: '시도 횟수가 정수가 아닐 경우', 
+        inputs: ['a,b', '3.333'] 
+      },
+      { 
+        name: '시도 횟수가 0일 경우', 
+        inputs: ['a,b', '0'] 
+      },
+      { 
+        name: '시도 횟수가 음수일 경우', 
+        inputs: ['a,b', '-1'] 
+      },
     ])('%s', async ({ inputs }) => {
       mockQuestions([...inputs]);
 
