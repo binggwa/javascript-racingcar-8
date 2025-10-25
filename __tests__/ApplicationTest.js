@@ -39,6 +39,30 @@ describe('자동차 경주', () => {
         randoms: [4, 4], // 둘 다 전진
         expectLogs: ['a : -', 'b : -', '최종 우승자 : a, b'],
       },
+      {
+        name: 'n라운드 1명 우승',
+        inputs: ['a,b', '3'],
+        randoms: [4, 9, 9, 3, 3, 0], // a 2칸 전진, b 1칸 전진
+        expectLogs: ['a : --', 'b : -', '최종 우승자 : a'],
+      },
+      {
+        name: 'n라운드 공동 우승',
+        inputs: ['a,b', '3'],
+        randoms: [4, 4, 5, 3, 3, 5], // a 2칸 전진, b 2칸 전진
+        expectLogs: ['a : --', 'b : --', '최종 우승자 : a, b'],
+      },
+      {
+        name: '인원 증가, 1라운드 공동 우승',
+        inputs: ['a,b,c', '1'],
+        randoms: [4, 4, 3], // a 1칸 전진, b 1칸 전진, c 0칸 전진
+        expectLogs: ['a : -', 'b : -', 'c : ', '최종 우승자 : a, b'],
+      },
+      {
+        name: '한 번도 전진하지 못한 경우',
+        inputs: ['a,b,c', '3'],
+        randoms: [3, 3, 3, 0, 0, 0, 1, 2, 3], // 모두 그대로
+        expectLogs: ['a : ', 'b : ', 'c : ', '최종 우승자 : a, b, c'],
+      },
     ])('%s', async ({ inputs, randoms, expectLogs }) => {
       mockQuestions([...inputs]);
       mockRandoms([...randoms]);
