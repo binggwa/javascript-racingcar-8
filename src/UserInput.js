@@ -31,6 +31,10 @@ class UserInput {
       throw new Error('[ERROR] 자동차의 이름은 1자 이상 5자 이하여야 합니다!');
     }
 
+    if (new Set(carNames).size < carNames.length) {
+      throw new Error('[ERROR] 자동차 이름이 중복됩니다!');
+    }
+
     return carNames;
   }
 
